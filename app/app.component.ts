@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Product} from "./product";
+
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'my-app',
     template: `
       <h1>{{title}}</h1>
-    <h2>My Products</h2>
+    <h2>My Products</h2>    
     <ul class="products">
       <li *ngFor="let product of products"
         [class.selected]="product === selectedProduct"
@@ -13,30 +15,22 @@ import {Product} from "./product";
         <span class="badge">{{product.id}}</span> {{product.name}}
       </li>
     </ul>
-    <div *ngIf="selectedProduct">
-      <h2>{{selectedProduct.name}} details!</h2>
-      <div><label>id: </label>{{selectedProduct.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedProduct.name" placeholder="name"/>
-      </div>
-    </div>
-    `
+    <my-product-detail [product]="selectedProduct"></my-product-detail>   
+    `,
+    providers: [ProductService]
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
     title = 'Tour of Products';
-    PRODUCTS: Product[] =[
-    {id:1, name: 'iPhone'},
-    {id:2, name: 'iPad'},
-    {id:3, name: 'iPod'},
-    {id:4, name: 'Apple TV'},
-    {id:5, name: 'Apple Watch'}
-];
-
-myProduct = this.PRODUCTS[0];
-    products = this.PRODUCTS;
-
+    products: Product[];
     selectedProduct: Product;
+    constructor(private productService: ProductService) { }
+    getProducts(): void {
+        this.productService.getProducts().then(products => this.products = products);
+    }
+    ngOnInit(): void {
+        this.getProducts();
+    }
     onSelect(product: Product): void {
         this.selectedProduct = product;
     }
