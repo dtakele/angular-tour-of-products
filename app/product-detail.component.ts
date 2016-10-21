@@ -15,7 +15,6 @@ import { Product } from './product';
       <div>
         <label>name: </label>
         <input [(ngModel)]="product.name" placeholder="name"/>
-    <p>Total Price: {{product.unitPrice | calculatePrice: product.quantity}}</p>
       </div>
             <div>
         <label>Total Price: </label>
