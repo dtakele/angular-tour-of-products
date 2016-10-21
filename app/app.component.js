@@ -28,7 +28,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n      <h1>{{title}}</h1>\n    <h2>My Products</h2>    \n    <ul class=\"products\">\n      <li *ngFor=\"let product of products\"\n        [class.selected]=\"product === selectedProduct\"\n        (click)=\"onSelect(product)\">\n        <span class=\"badge\">{{product.id}}</span> {{product.name}}\n      </li>\n    </ul>\n    <my-product-detail [product]=\"selectedProduct\"></my-product-detail>   \n    ",
+            template: "\n      <h1>{{title}}</h1>\n    <h2>My Products</h2>    \n    <ul class=\"products\">\n      <li *ngFor=\"let product of products\"\n        [class.selected]=\"product === selectedProduct\"\n        (click)=\"onSelect(product)\">\n        <span class=\"badge\">{{product.id}}</span> {{product.name}}\n      </li>\n    </ul>\n\n    <my-product-detail [product]=\"selectedProduct\"></my-product-detail>   \n    ",
             providers: [product_service_1.ProductService]
         }), 
         __metadata('design:paramtypes', [product_service_1.ProductService])

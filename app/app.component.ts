@@ -15,6 +15,7 @@ import { ProductService } from './product.service';
         <span class="badge">{{product.id}}</span> {{product.name}}
       </li>
     </ul>
+
     <my-product-detail [product]="selectedProduct"></my-product-detail>   
     `,
     providers: [ProductService]
