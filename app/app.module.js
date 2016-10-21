@@ -13,14 +13,49 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var product_detail_component_1 = require('./product-detail.component');
-var calculate_price_pipe_1 = require("./calculate-price.pipe");
+var products_component_1 = require('./products.component');
+var product_service_1 = require('./product.service');
+var calculate_price_pipe_1 = require('./calculate-price.pipe');
+var dashboard_component_1 = require('./dashboard.component');
+var router_1 = require('@angular/router');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent, product_detail_component_1.ProductDetailComponent, calculate_price_pipe_1.CalculatePricePipe],
+            imports: [
+                platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
+                router_1.RouterModule.forRoot([
+                    {
+                        path: 'detail/:id',
+                        component: product_detail_component_1.ProductDetailComponent
+                    },
+                    {
+                        path: '',
+                        redirectTo: '/dashboard',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'dashboard',
+                        component: dashboard_component_1.DashboardComponent
+                    },
+                    {
+                        path: 'heroes',
+                        component: products_component_1.ProductsComponent
+                    }
+                ])
+            ],
+            declarations: [
+                app_component_1.AppComponent,
+                product_detail_component_1.ProductDetailComponent,
+                products_component_1.ProductsComponent,
+                calculate_price_pipe_1.CalculatePricePipe,
+                dashboard_component_1.DashboardComponent
+            ],
+            providers: [
+                product_service_1.ProductService
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

@@ -1,9 +1,11 @@
 
-/**
- * Created by 985261 on 10/19/2016.
- */
+// Keep the Input import for now, we'll remove it later:
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
+import { Location }                 from '@angular/common';
 
-import { Component, Input } from '@angular/core';
+import { ProductService } from './product.service';
+
 import { Product } from './product';
 
 @Component({
@@ -19,12 +21,30 @@ import { Product } from './product';
             <div>
         <label>Total Price: </label>
     {{product.unitPrice | calculatePrice: product.quantity}}
-      </div>
+      </div>      
+  <button (click)="goBack()">Back</button>
     </div>
   `
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit{
+    ngOnInit(): void {
+    this.route.params.forEach((params: Params) => {
+    let id = +params['id'];
+
+    this.productService.getProduct(id)
+        .then(product => this.product = product);
+
+});
+}
+    constructor(
+        private productService: ProductService,
+        private route: ActivatedRoute,
+        private location: Location
+    ) {}
+    goBack(): void {
+        this.location.back();
+    }
+
     @Input()
     product: Product;
 }
-
