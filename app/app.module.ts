@@ -7,32 +7,13 @@ import { ProductsComponent }     from './products.component';
 import { ProductService }         from './product.service';
 import {CalculatePricePipe} from './calculate-price.pipe';
 import {DashboardComponent} from './dashboard.component';
-
-import { RouterModule }   from '@angular/router';
+import { AppRoutingModule }     from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: 'detail/:id',
-        component: ProductDetailComponent
-      },
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'heroes',
-        component: ProductsComponent
-      }
-    ])
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
@@ -48,7 +29,6 @@ import { RouterModule }   from '@angular/router';
 })
 export class AppModule {
 }
-
 
 
 

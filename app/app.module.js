@@ -17,7 +17,7 @@ var products_component_1 = require('./products.component');
 var product_service_1 = require('./product.service');
 var calculate_price_pipe_1 = require('./calculate-price.pipe');
 var dashboard_component_1 = require('./dashboard.component');
-var router_1 = require('@angular/router');
+var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,25 +26,7 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                router_1.RouterModule.forRoot([
-                    {
-                        path: 'detail/:id',
-                        component: product_detail_component_1.ProductDetailComponent
-                    },
-                    {
-                        path: '',
-                        redirectTo: '/dashboard',
-                        pathMatch: 'full'
-                    },
-                    {
-                        path: 'dashboard',
-                        component: dashboard_component_1.DashboardComponent
-                    },
-                    {
-                        path: 'heroes',
-                        component: products_component_1.ProductsComponent
-                    }
-                ])
+                app_routing_module_1.AppRoutingModule
             ],
             declarations: [
                 app_component_1.AppComponent,
